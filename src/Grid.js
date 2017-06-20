@@ -33,7 +33,7 @@ export default class Grid extends Component {
 		for (let i = horizontalSteps; i > 0; i--) horizontalRange.push(i);
 		for (let i = xData.length - 1; i > 0; i -= stepsBetweenVerticalLines) verticalRange.push(i);
 
-		const containerStyle = { width: this.props.width, height: this.props.height, position: 'absolute', left: 0 };
+		const containerStyle = { width: this.props.width, height: this.props.height, position: 'absolute', left: 0, zIndex: 999 };
 
 		let intendedLineWidth = this.props.gridLineWidth;
 		if (this.props.gridLineWidth < 1) {

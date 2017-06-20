@@ -26,7 +26,7 @@ export default class YAxis extends Component<void, any, any> {
 		verticalGridStep: PropTypes.number.isRequired,
 		yAxisTransform: PropTypes.func,
 		yAxisUseDecimal: PropTypes.bool,
-		yAxisShortLabel: PropTypes.bool
+		yAxisShortLabel: PropTypes.bool,
 	};
 
 	static defaultProps : any = {
@@ -36,6 +36,7 @@ export default class YAxis extends Component<void, any, any> {
 	constructor(props : any) {
 		super(props);
 		this.state = { bounds: { min: 0, max: 0 } };
+		this.previousLabel = null;
 	}
 
 	// Credits:  Martin Sznapka, StackOverflow, QuestionID: 9461621
@@ -76,7 +77,8 @@ export default class YAxis extends Component<void, any, any> {
 
 
 		if (this.props.yAxisTransform && typeof this.props.yAxisTransform === 'function') {
-			label = this.props.yAxisTransform(label);
+			label = this.props.yAxisTransform(label, this.previousLabel);
+			this.previousLabel = label;
 		}
 		return (
 			<Text

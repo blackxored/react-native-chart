@@ -59,7 +59,7 @@ export default class XAxis extends Component {
 					let stepsBetweenVerticalLines = this.props.horizontalGridStep ? Math.round((data.length) / this.props.horizontalGridStep + 1) : 1;
 					if (stepsBetweenVerticalLines < 1) stepsBetweenVerticalLines = 1;
 					if (i % stepsBetweenVerticalLines !== 0) return null;
-					const item = transform(d);
+					const item = transform(d, data[i - 1]);
 					if (typeof item !== 'number' && !item) return null;
 					return (
 						<Text
